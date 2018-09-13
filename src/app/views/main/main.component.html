@@ -1,0 +1,38 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer
+                 class="sidenav"
+                 mode="over"
+                 [opened]="opened"
+                 (opened)="events.push('open!')"
+                 (closed)="events.push('close!')">
+
+        <mat-toolbar color="primary">Card Database</mat-toolbar>
+
+        <mat-nav-list>
+            <mat-list-item *ngFor="let item of menu" (click)="goTo(item)">
+                <mat-icon [style.color]="item.color" mat-list-icon>{{item.icon}}</mat-icon>
+                <h4 mat-line>{{item.name}}</h4>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button type="button"
+                    aria-label="Toggle sidenav"
+                    mat-icon-button
+                    (click)="drawer.toggle()">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+
+            <span style="margin-left: 16px">Card Database</span>
+        </mat-toolbar>
+
+
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
